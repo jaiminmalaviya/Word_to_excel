@@ -23,10 +23,19 @@ def read_word_file(file_path):
 def save_to_excel(data, output_file):
     try:
         df = pd.DataFrame(data, columns=columns)
-        df.to_excel(output_file, index=False)
+        
+        with pd.ExcelWriter(output_file, engine='xlsxwriter') as writer:
+            df.to_excel(writer, index=False, sheet_name='Sheet1')
+            worksheet = writer.sheets['Sheet1']
+            
+            for i, col in enumerate(df.columns):
+                max_length = max(df[col].astype(str).map(len).max(), len(col))
+                worksheet.set_column(i, i, max_length)
+                
         st.success(f"Excel file '{output_file}' created successfully.")
     except Exception as e:
         st.error(f"Error saving to Excel file: {e}")
+
 
 def delete_file(file_path):
     try:
