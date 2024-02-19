@@ -44,6 +44,7 @@ def delete_file(file_path):
         st.error(f"Error deleting file '{file_path}': {e}")
 
 if __name__ == "__main__":
+    st.set_page_config(page_title="Word to Excel Converter", page_icon=":page_with_curl:")
     st.title("Word to Excel Converter")
     uploaded_file = st.file_uploader("Upload a Word file", type=["docx"])
 
