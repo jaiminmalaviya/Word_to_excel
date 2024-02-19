@@ -3,7 +3,6 @@ import pandas as pd
 from docx import Document
 import os
 import uuid
-import time
 
 def read_word_file(file_path):
     try:
@@ -55,7 +54,6 @@ if __name__ == "__main__":
         data = read_word_file(uploaded_file)
         if data:
             save_to_excel(data, output_file)
-            time.sleep(1)
                         
             # Provide a download link for the file
             with open(output_file, "rb") as file:
