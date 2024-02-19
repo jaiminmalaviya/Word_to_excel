@@ -50,16 +50,16 @@ if __name__ == "__main__":
             st.warning(f"Number of columns provided ({len(columns)}) does not match the specified number ({num_columns}). Using default column names.")
             columns = default_columns
 
-        unique_id = uuid.uuid4().hex[:7]  # Generate a unique ID
-        output_file = f"EMAIL LIST ({unique_id}).xlsx"  # Append the ID to the output file name
+        unique_id = uuid.uuid4().hex[:7]
+        output_file = f"EMAIL LIST ({unique_id}).xlsx"
         data = read_word_file(uploaded_file)
         if data:
             save_to_excel(data, output_file)
-            # time.sleep(3)  # Add a short delay
+            time.sleep(1)
                         
             # Provide a download link for the file
             with open(output_file, "rb") as file:
                 file_contents = file.read()
             st.download_button(label="Download Excel file", data=file_contents, file_name=output_file, mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
-            delete_file(output_file)  # Delete the file after generating download link
+            delete_file(output_file) 
