@@ -55,7 +55,7 @@ if __name__ == "__main__":
         data = read_word_file(uploaded_file)
         if data:
             save_to_excel(data, output_file)
-            time.sleep(3)  # Add a short delay
+            # time.sleep(3)  # Add a short delay
                         
             # Provide a download link for the file
             with open(output_file, "rb") as file:
