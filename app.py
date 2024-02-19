@@ -3,6 +3,7 @@ import pandas as pd
 from docx import Document
 import os
 import uuid
+import time
 
 def read_word_file(file_path):
     try:
@@ -54,5 +55,11 @@ if __name__ == "__main__":
         data = read_word_file(uploaded_file)
         if data:
             save_to_excel(data, output_file)
-            st.download_button(label="Download Excel file", data=open(output_file, 'rb').read(), file_name=output_file, mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-            delete_file(output_file)
+            # time.sleep(2)  # Add a short delay
+                        
+            # Provide a download link for the file
+            with open(output_file, "rb") as file:
+                file_contents = file.read()
+            st.download_button(label="Download Excel file", data=file_contents, file_name=output_file, mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
+            delete_file(output_file)  # Delete the file after generating download link
